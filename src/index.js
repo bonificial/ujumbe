@@ -1,11 +1,7 @@
 import { MongoClient } from 'mongodb';
-
 import sendNotification from "./notification.js";
 import {env} from "./constants.js"; // Import the config function
-
-
 const { MONGO_DB_URL, MONGO_DB_NAME } = env   // Access environment variables using process.env
-
 async function getDB() {
     try {
 
@@ -19,12 +15,13 @@ async function getDB() {
     }
 }
 
-export const start = async () => {
+export let start = async () => {
     console.log('Connecting to DB...');
     const db = await getDB();
 
     const runNotificationCycle = async () => {
         const invoices = await db.collection('invoices').find({}).toArray();
+        console.log(invoices)
         const tasks = invoices.map((invoice) =>
             new Promise((resolve, reject) => {
                 const  dueDate  =  Date.parse(invoice.due_date);
@@ -41,6 +38,6 @@ export const start = async () => {
         await Promise.all(tasks);
     };
     console.log('Starting notification cycle...');
-    runNotificationCycle()
-  //  setInterval(runNotificationCycle, 86400000);
+    await runNotificationCycle()
+   //setInterval(runNotificationCycle, 86400000);
 };

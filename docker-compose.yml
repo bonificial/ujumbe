@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+
+  app:
+    container_name: nodejs_app
+    build: .
+    ports:
+      - 4000:3000
+    environment:
+      MONGO_DB_URL: mongodb+srv://bonificial:g0ajkNFZ2qCwCnVU@cluster0.wl8hd.mongodb.net/?retryWrites=true&w=majority
+      MONGO_DB_NAME: business
+      SLACK_WEBHOOK: https://hooks.slack.com/services/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
+      BREVO_API_KEY: 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
+      TEST_BUSINESS_NAME: HAPPY SOLUTIONS TECH LTD
+      TEST_FROM_EMAIL: bonificialm@gmail.com
+      TEST_TO_EMAIL: mboniface107@gmail.com
+
+
+
