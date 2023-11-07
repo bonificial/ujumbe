@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
@@ -32,7 +32,7 @@ jobs:
 
       - name: Build
         run: npm run build --if-present
-        working-directory: ./ujumbe
+        working-directory: .
 
       - name: Run tests
         run: npm test
