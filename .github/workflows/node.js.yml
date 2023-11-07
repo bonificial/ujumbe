@@ -28,12 +28,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./ujumbe
+
 
       - name: Build
         run: npm run build --if-present
-        working-directory: ./ujumbe
+
 
       - name: Run tests
         run: npm test
-        working-directory: ./ujumbe
+
