@@ -1,5 +1,8 @@
 name: Node.js CI
 
+env:
+  SLACK_WEBHOOK: ${{secrets.API_KEY}}
+
 on:
   push:
     branches:
