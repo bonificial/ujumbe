@@ -1,10 +1,10 @@
 import {IncomingWebhook} from "@slack/webhook";
 import {env} from "./constants.js";
-
+import fetch from 'node-fetch';
 const {SLACK_WEBHOOK, BREVO_API_KEY, TEST_BUSINESS_NAME, TEST_FROM_EMAIL, TEST_TO_EMAIL} = env
 const webhook = new IncomingWebhook(SLACK_WEBHOOK);
 
-const sendNotification = async (invoice) => {
+export const sendNotification = async (invoice) => {
     console.log('Sending notification..')
     const {invoice_number, total_amount_due, due_date} = invoice;
     await webhook.send({
@@ -14,7 +14,7 @@ const sendNotification = async (invoice) => {
 }
 
 
-const sendEmail = async (invoice) => {
+export const sendEmail = async (invoice) => {
     console.log('Sending Email')
     const {invoice_number, total_amount_due, due_date} = invoice;
     const customer_name = invoice?.customer?.name || 'Valued Client'
