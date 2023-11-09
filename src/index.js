@@ -40,7 +40,7 @@ export let start = async () => {
         await Promise.all(tasks);
     };
     console.log('Starting notification cycle...');
-    await runNotificationCycle()
+     runNotificationCycle()
 
     http.createServer(function (req, res) {
         res.write('Hello World!'); //write a response

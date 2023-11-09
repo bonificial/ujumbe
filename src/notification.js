@@ -9,7 +9,9 @@ export const sendNotification = async (invoice) => {
     const {invoice_number, total_amount_due, due_date} = invoice;
     await webhook.send({
         text: `Hi There!\n The invoice ${invoice_number} of Kshs. ${total_amount_due} is due on ${due_date}`,
-    });
+    }).then((res=>{
+        console.log(' Successful. Notification Sent. ',res)
+    }))
     await sendEmail(invoice);
 }
 
@@ -44,7 +46,7 @@ The invoice ${invoice_number} of Kshs. ${total_amount_due} is due on ${due_date}
 .</p></body></html>`
         })
     }).then((res) => {
-        console.log('Email Send Successful to ', customer_email)
+        console.log('Successful.Email Sent  to ', customer_email)
     }).catch((err) => {
         console.log(
             'Error Occured', err
