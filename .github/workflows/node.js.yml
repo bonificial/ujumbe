@@ -42,6 +42,7 @@ jobs:
         run: npm run build --if-present
 
       - name: Run tests
+        # Running Unit Tests
         run: npm test
 
   deploy:
