@@ -93,6 +93,7 @@ jobs:
       - name: Test EKS Deployment
         run: |
           # Wait for the service to be available (you may need to adjust the timeout)
+          kubectl get svc ujumbe
           kubectl wait --for=condition=available deployment/ujumbe --timeout=180s
 
           # Get the LoadBalancer or Service IP (if it's a LoadBalancer type)
