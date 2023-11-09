@@ -56,6 +56,13 @@ jobs:
           aws-secret-access-key: JBA6YCFGsVW3zBo4buUCRlg8W8vb2tT7cJxmbMYH # ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2 # Change to your desired AWS region
 
+      - name: Authenticate with AWS ECR
+        run: |
+          aws ecr get-login-password --region us-east-2 |  docker login --username AWS --password-stdin public.ecr.aws/j9c2n9s8
+        env:
+          your-region: us-east-2 # Change to your AWS region
+          your-account-id: 732196143768 # Change to your AWS account ID
+
       - name: Build and push Docker image
         run: |
           # Replace these with your Docker image details
