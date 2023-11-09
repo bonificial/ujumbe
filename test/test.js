@@ -23,6 +23,7 @@ describe('Database Connection', function () {
 
     after(async function () {
         await client.close();
+
     });
 
     it('Should connect to the database successfully', async function () {
@@ -30,7 +31,7 @@ describe('Database Connection', function () {
         //console.log(client)
         const db = await client.db(MONGO_DB_NAME);
         expect(db).to.exist;
-        return
+
     });
 
     it('Should handle database connection errors', async function() {
@@ -65,9 +66,7 @@ describe('Database Connection', function () {
 
         try {
             await collection.find({}).toArray();
-            // Remove the following line since you don't need to expect an AssertionError here.
         } catch (error) {
-
             expect(error).to.be.an('error');
         }
     });
