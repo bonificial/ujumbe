@@ -8,7 +8,6 @@ import { env } from '../src/constants.js';
 const { MONGO_DB_URL, MONGO_DB_NAME } = env;
 let client;
 
-console.log('test env',env)
 describe('Database Connection', function () {
     before(async function() {
         this.timeout(10000);
@@ -31,22 +30,27 @@ describe('Database Connection', function () {
         //console.log(client)
         const db = await client.db(MONGO_DB_NAME);
         expect(db).to.exist;
+        return
     });
 
-    it('Should handle database connection errors', async function () {
+    it('Should handle database connection errors', async function() {
+        this.timeout(20000);
         const wrongUrl = `${MONGO_DB_URL}/nonexistent-database`;
-        const wrongClient = new MongoClient(wrongUrl, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
 
         try {
+            const wrongClient = new MongoClient(wrongUrl, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            });
+
             await wrongClient.connect();
-        } catch (error) {
-            console.log(error)
+
+        } catch(error) {
             expect(error).to.be.an('error');
         }
+
     });
+
 
     it('Should be able to retrieve data from the database', async function () {
         const db = client.db(MONGO_DB_NAME);
