@@ -86,7 +86,7 @@ jobs:
           echo "  TEST_TO_EMAIL: ${{ secrets.TEST_TO_EMAIL }}" >> configmap.yaml
          
           # Add more environment variables as needed
-        shell: bash
+     
 
       - name: Deploy to EKS
         run: |
