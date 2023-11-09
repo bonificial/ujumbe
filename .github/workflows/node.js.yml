@@ -81,8 +81,10 @@ jobs:
           echo "metadata:" >> configmap.yaml
           echo "  name: ujumbe-config" >> configmap.yaml
           echo "data:" >> configmap.yaml
-          echo "  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}" >> configmap.yaml
-          echo "  ANOTHER_ENV_VAR: ${{ secrets.ANOTHER_ENV_VAR }}" >> configmap.yaml
+           # Loop through all GitHub secrets and add them to the ConfigMap
+          for secret in $(printenv | grep -E '^SECRET_' | sed 's/SECRET_//'); do
+            echo "  $secret: ${{ secrets["SECRET_$secret"] }}" >> configmap.yaml
+          done
           # Add more environment variables as needed
         shell: bash
 
