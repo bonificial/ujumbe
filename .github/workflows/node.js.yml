@@ -22,7 +22,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          ref: develop
+          fetch-depth: 0
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -46,7 +46,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          ref: develop
+          fetch-depth: 0
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -99,7 +99,7 @@ jobs:
           sudo mv kubectl /usr/local/bin/
           # Authenticate with EKS cluster
           aws eks --region us-east-2 update-kubeconfig --name ujumbe-app
-          
+          kubectl rollout restart deployment/ujumbe  
           # Apply Kubernetes manifests
           
           kubectl apply -f deployment.yaml
@@ -120,22 +120,3 @@ jobs:
           POD_NAME=$(kubectl get pods -l app=ujumbe -o jsonpath="{.items[0].metadata.name}")
           kubectl logs $POD_NAME
 
-      - name: Test EKS Deployment
-        run: |
-          # Wait for the service to be available (you may need to adjust the timeout)
-          kubectl get svc ujumbe
-          # Get the LoadBalancer or Service IP (if it's a LoadBalancer type)
-          # SERVICE_IP=$(kubectl get svc ujumbe -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
-           CLUSTER_IP=$(kubectl get svc ujumbe -o jsonpath='{.spec.clusterIP}')
-          # Alternatively, get the NodePort (if it's a NodePort type)
-           NODE_PORT=$(kubectl get svc ujumbe -o jsonpath='{.spec.ports[0].nodePort}')
-
-          # Make a cURL request to test the server
-          # If it's a LoadBalancer type, use the SERVICE_IP
-          # If it's a NodePort type, use the NodePort (uncomment NODE_PORT)
-           # curl -I http://$SERVICE_IP:$NODE_PORT # If LoadBalancer type
-           curl -I http://$CLUSTER_IP:$NODE_PORT --connect-timeout 20 # If NodePort type
-
-          # Check the response for HTTP status codes
-        env:
-          KUBECONFIG: $HOME/.kube/config
