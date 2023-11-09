@@ -10,7 +10,7 @@ import { env } from '../src/constants.js';
 const { MONGO_DB_URL, MONGO_DB_NAME } = env;
 let client;
 
-
+console.log('test env',env)
 describe('Database Connection', function () {
     before(async function() {
         this.timeout(10000);
