@@ -106,7 +106,7 @@ jobs:
           # If it's a LoadBalancer type, use the SERVICE_IP
           # If it's a NodePort type, use the NodePort (uncomment NODE_PORT)
            # curl -I http://$SERVICE_IP:$NODE_PORT # If LoadBalancer type
-           curl -I http://$CLUSTER_IP:$NODE_PORT # If NodePort type
+           curl -I http://$CLUSTER_IP:$NODE_PORT --connect-timeout 20 # If NodePort type
 
           # Check the response for HTTP status codes
         env:
