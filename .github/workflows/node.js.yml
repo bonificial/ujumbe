@@ -59,9 +59,9 @@ jobs:
       - name: Build and push Docker image
         run: |
           # Replace these with your Docker image details
-          docker build -t your-docker-image:latest .
-          docker tag your-docker-image:latest your-repo/your-docker-image:latest
-          docker push your-repo/your-docker-image:latest
+          docker build -t ujumbe:latest .
+          docker tag ujumbe:latest public.ecr.aws/j9c2n9s8/ujumbe:latest
+          docker push public.ecr.aws/j9c2n9s8/ujumbe:latest
         env:
           DOCKER_CLI_AK: AKIA2U6SKQKMMCCAHDWF # ${{ secrets.AWS_ACCESS_KEY_ID }}
           DOCKER_CLI_SK: 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 # ${{ secrets.AWS_SECRET_ACCESS_KEY }}
