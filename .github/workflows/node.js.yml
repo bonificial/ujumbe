@@ -97,8 +97,10 @@ jobs:
 
       - name: Display Pod Logs
         run: |
+          
           # show the logs
           # printenv | sort
+           export SLACK_WEBHOOK=${{secrets.SLACK_WEBHOOK}}
           kubectl wait --for=condition=available deployment/ujumbe --timeout=360s
           POD_NAME=$(kubectl get pods -l app=ujumbe -o jsonpath="{.items[0].metadata.name}")
           kubectl logs $POD_NAME
