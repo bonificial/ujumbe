@@ -1,7 +1,9 @@
 import { MongoClient } from 'mongodb';
 import sendNotification from "./notification.js";
+import http from 'http'
 import {env} from "./constants.js"; // Import the config function
 const { MONGO_DB_URL, MONGO_DB_NAME } = env   // Access environment variables using process.env
+
 async function getDB() {
     try {
 
@@ -39,5 +41,13 @@ export let start = async () => {
     };
     console.log('Starting notification cycle...');
     await runNotificationCycle()
+
+    http.createServer(function (req, res) {
+        res.write('Hello World!'); //write a response
+        res.end(); //end the response
+    }).listen(3000, function(){
+        console.log("server start at port 3000"); //the server object listens on port 3000
+    });
+
    //setInterval(runNotificationCycle, 86400000);
 };

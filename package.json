@@ -10,7 +10,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@mailerlite/mailerlite-nodejs": "^1.2.0",
     "@slack/webhook": "^7.0.0",
     "dotenv": "^16.3.1",
     "mongodb": "^6.2.0",

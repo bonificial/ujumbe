@@ -16,5 +16,5 @@ services:
       TEST_FROM_EMAIL: bonificialm@gmail.com
       TEST_TO_EMAIL: mboniface107@gmail.com
 
-
+  docker tag ujumbe-app:latest public.ecr.aws/j9c2n9s8/ujumbe:latest
 
