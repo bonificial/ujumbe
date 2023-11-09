@@ -1,4 +1,5 @@
 import { describe, it, before, after } from 'mocha';
+import {assert} from "chai";
 /*
 import { expect } from 'chai';
 import { start } from '../src/index.js';
