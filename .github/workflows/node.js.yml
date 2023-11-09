@@ -80,10 +80,11 @@ jobs:
           echo "data:" >> configmap.yaml
           echo "  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}" >> configmap.yaml
           echo "  MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}" >> configmap.yaml
-          echo "  MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}" >> configmap.yaml
-          echo "  MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}" >> configmap.yaml
-          echo "  MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}" >> configmap.yaml
-          echo "  MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}" >> configmap.yaml
+           echo "  MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME }}" >> configmap.yaml
+          echo "  TEST_BUSINESS_NAME: ${{ secrets.TEST_BUSINESS_NAME }}" >> configmap.yaml
+          echo "  TEST_FROM_EMAIL: ${{ secrets.TEST_FROM_EMAIL }}" >> configmap.yaml
+          echo "  TEST_TO_EMAIL: ${{ secrets.TEST_TO_EMAIL }}" >> configmap.yaml
+         
           # Add more environment variables as needed
         shell: bash
 
