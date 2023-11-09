@@ -58,7 +58,7 @@ jobs:
 
       - name: Authenticate with AWS ECR
         run: |
-          aws ecr get-login-password --region us-east-2 |  docker login --username AWS --password-stdin public.ecr.aws/j9c2n9s8
+          aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/j9c2n9s8
         env:
           your-region: us-east-2 # Change to your AWS region
           your-account-id: 732196143768 # Change to your AWS account ID
