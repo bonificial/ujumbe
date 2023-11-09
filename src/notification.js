@@ -2,7 +2,7 @@ import {IncomingWebhook} from "@slack/webhook";
 import {env} from "./constants.js";
 import fetch from 'node-fetch';
 const {SLACK_WEBHOOK, BREVO_API_KEY, TEST_BUSINESS_NAME, TEST_FROM_EMAIL, TEST_TO_EMAIL} = env
-
+console.log('notif env',env)
 const webhook = new IncomingWebhook(SLACK_WEBHOOK);
 
 export const sendNotification = async (invoice) => {
@@ -47,7 +47,7 @@ The invoice ${invoice_number} of Kshs. ${total_amount_due} is due on ${due_date}
 .</p></body></html>`
         })
     }).then((res) => {
-        console.log('Successful.Email Sent  to ', customer_email,res)
+        console.log('Successful.Email Sent  to ', customer_email, 'Done')
     }).catch((err) => {
         console.log(
             'Error Occured', err

@@ -1,0 +1,321 @@
+[{
+  "_id": {
+    "$oid": "6549183f7d573cc34c5a8b9e"
+  },
+  "invoice_number": "INV20231101",
+  "invoice_date": "2023-11-01",
+  "due_date": "2023-11-15",
+  "customer": {
+    "name": "ABC Tech Solutions",
+    "address": "456 Mombasa Road, Nairobi, Kenya",
+    "email": "boniface.mwangi@lvcthealth.org",
+    "phone": "+254 987-654-3210"
+  },
+  "services": [
+    {
+      "service": "Web Development",
+      "description": "Design and development of a corporate website",
+      "quantity": 1,
+      "unit_price": 3500,
+      "total": 3500
+    },
+    {
+      "service": "Software Maintenance",
+      "description": "Monthly maintenance for the client's software",
+      "quantity": 1,
+      "unit_price": 1200,
+      "total": 1200
+    }
+  ],
+  "subtotal": 4700,
+  "tax": 752,
+  "total_amount_due": 5452
+},
+{
+  "_id": {
+    "$oid": "6549183f7d573cc34c5a8b9f"
+  },
+  "invoice_number": "INV20231102",
+  "invoice_date": "2023-11-02",
+  "due_date": "2023-11-16",
+  "customer": {
+    "name": "Tech Innovators Ltd",
+    "address": "789 Nakuru Street, Nakuru, Kenya",
+    "phone": "+254 876-543-2109"
+  },
+  "services": [
+    {
+      "service": "Mobile App Development",
+      "description": "Development of a mobile app for iOS",
+      "quantity": 1,
+      "unit_price": 2800,
+      "total": 2800
+    },
+    {
+      "service": "Database Design",
+      "description": "Design of a relational database for the client",
+      "quantity": 1,
+      "unit_price": 1800,
+      "total": 1800
+    }
+  ],
+  "subtotal": 4600,
+  "tax": 736,
+  "total_amount_due": 5336
+},
+{
+  "_id": {
+    "$oid": "6549183f7d573cc34c5a8ba0"
+  },
+  "invoice_number": "INV20231103",
+  "invoice_date": "2023-11-03",
+  "due_date": "2023-11-17",
+  "customer": {
+    "name": "Skyline Software Solutions",
+    "address": "321 Kisumu Avenue, Kisumu, Kenya",
+    "phone": "+254 765-432-1098"
+  },
+  "services": [
+    {
+      "service": "Custom Software Development",
+      "description": "Development of a custom inventory management system",
+      "quantity": 1,
+      "unit_price": 4200,
+      "total": 4200
+    },
+    {
+      "service": "Technical Support",
+      "description": "24/7 technical support for the software",
+      "quantity": 1,
+      "unit_price": 1500,
+      "total": 1500
+    }
+  ],
+  "subtotal": 5700,
+  "tax": 912,
+  "total_amount_due": 6612
+},
+{
+  "_id": {
+    "$oid": "6549183f7d573cc34c5a8ba1"
+  },
+  "invoice_number": "INV20231104",
+  "invoice_date": "2023-11-04",
+  "due_date": "2023-11-18",
+  "customer": {
+    "name": "Innovate IT Solutions",
+    "address": "567 Eldoret Road, Eldoret, Kenya",
+    "phone": "+254 654-321-0987"
+  },
+  "services": [
+    {
+      "service": "Mobile App Development",
+      "description": "Development of a mobile app for Android",
+      "quantity": 1,
+      "unit_price": 3200,
+      "total": 3200
+    },
+    {
+      "service": "Database Integration",
+      "description": "Integration of the app with a database",
+      "quantity": 1,
+      "unit_price": 1900,
+      "total": 1900
+    }
+  ],
+  "subtotal": 5100,
+  "tax": 816,
+  "total_amount_due": 5916
+},
+{
+  "_id": {
+    "$oid": "6549183f7d573cc34c5a8ba2"
+  },
+  "invoice_number": "INV20231105",
+  "invoice_date": "2023-11-05",
+  "due_date": "2023-11-19",
+  "customer": {
+    "name": "Tech Solutions Plus",
+    "address": "890 Nairobi Street, Nairobi, Kenya",
+    "phone": "+254 543-210-9876"
+  },
+  "services": [
+    {
+      "service": "Web Design",
+      "description": "Design of a modern website for the client",
+      "quantity": 1,
+      "unit_price": 2900,
+      "total": 2900
+    },
+    {
+      "service": "SEO Optimization",
+      "description": "Optimizing the website for search engines",
+      "quantity": 1,
+      "unit_price": 1100,
+      "total": 1100
+    }
+  ],
+  "subtotal": 4000,
+  "tax": 640,
+  "total_amount_due": 4640
+},
+{
+  "_id": {
+    "$oid": "6549183f7d573cc34c5a8ba3"
+  },
+  "invoice_number": "INV20231106",
+  "invoice_date": "2023-11-06",
+  "due_date": "2023-11-20",
+  "customer": {
+    "name": "Kenyan Tech Solutions Ltd",
+    "address": "123 Nairobi Street, Nairobi, Kenya",
+    "phone": "+254 123-456-7890"
+  },
+  "services": [
+    {
+      "service": "Custom Software Development",
+      "description": "Development of a custom e-commerce website",
+      "quantity": 1,
+      "unit_price": 5000,
+      "total": 5000
+    },
+    {
+      "service": "Mobile App Development",
+      "description": "Development of a mobile app for Android and iOS",
+      "quantity": 1,
+      "unit_price": 3000,
+      "total": 3000
+    }
+  ],
+  "subtotal": 8000,
+  "tax": 1280,
+  "total_amount_due": 9280
+},
+{
+  "_id": {
+    "$oid": "6549183f7d573cc34c5a8ba4"
+  },
+  "invoice_number": "INV20231107",
+  "invoice_date": "2023-11-07",
+  "due_date": "2023-11-21",
+  "customer": {
+    "name": "Tech Pro Solutions",
+    "address": "234 Kisii Street, Kisii, Kenya",
+    "phone": "+254 654-210-9876"
+  },
+  "services": [
+    {
+      "service": "Software Development",
+      "description": "Development of a custom inventory management system",
+      "quantity": 1,
+      "unit_price": 4200,
+      "total": 4200
+    },
+    {
+      "service": "Technical Support",
+      "description": "24/7 technical support for the software",
+      "quantity": 1,
+      "unit_price": 1500,
+      "total": 1500
+    }
+  ],
+  "subtotal": 5700,
+  "tax": 912,
+  "total_amount_due": 6612
+},
+{
+  "_id": {
+    "$oid": "6549183f7d573cc34c5a8ba5"
+  },
+  "invoice_number": "INV20231108",
+  "invoice_date": "2023-11-08",
+  "due_date": "2023-11-22",
+  "customer": {
+    "name": "Nairobi Software Solutions",
+    "address": "789 Langata Road, Nairobi, Kenya",
+    "phone": "+254 765-321-0987"
+  },
+  "services": [
+    {
+      "service": "Mobile App Development",
+      "description": "Development of a mobile app for Android",
+      "quantity": 1,
+      "unit_price": 3200,
+      "total": 3200
+    },
+    {
+      "service": "Database Integration",
+      "description": "Integration of the app with a database",
+      "quantity": 1,
+      "unit_price": 1900,
+      "total": 1900
+    }
+  ],
+  "subtotal": 5100,
+  "tax": 816,
+  "total_amount_due": 5916
+},
+{
+  "_id": {
+    "$oid": "6549183f7d573cc34c5a8ba6"
+  },
+  "invoice_number": "INV20231109",
+  "invoice_date": "2023-11-09",
+  "due_date": "2023-11-23",
+  "customer": {
+    "name": "Tech Wizards Ltd",
+    "address": "567 Thika Road, Thika, Kenya",
+    "phone": "+254 876-432-1098"
+  },
+  "services": [
+    {
+      "service": "Web Design",
+      "description": "Design of a modern website for the client",
+      "quantity": 1,
+      "unit_price": 2900,
+      "total": 2900
+    },
+    {
+      "service": "SEO Optimization",
+      "description": "Optimizing the website for search engines",
+      "quantity": 1,
+      "unit_price": 1100,
+      "total": 1100
+    }
+  ],
+  "subtotal": 4000,
+  "tax": 640,
+  "total_amount_due": 4640
+},
+{
+  "_id": {
+    "$oid": "6549183f7d573cc34c5a8ba7"
+  },
+  "invoice_number": "INV20231110",
+  "invoice_date": "2023-11-10",
+  "due_date": "2023-11-24",
+  "customer": {
+    "name": "Tech Solutions Plus",
+    "address": "890 Nairobi Street, Nairobi, Kenya",
+    "phone": "+254 543-210-9876"
+  },
+  "services": [
+    {
+      "service": "Custom Software Development",
+      "description": "Development of a custom e-commerce website",
+      "quantity": 1,
+      "unit_price": 5000,
+      "total": 5000
+    },
+    {
+      "service": "Mobile App Development",
+      "description": "Development of a mobile app for Android and iOS",
+      "quantity": 1,
+      "unit_price": 3000,
+      "total": 3000
+    }
+  ],
+  "subtotal": 8000,
+  "tax": 1280,
+  "total_amount_due": 9280
+}]

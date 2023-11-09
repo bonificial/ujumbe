@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "mocha test/test.js --timeout 10000"
+    "test": "mocha test/test.js --timeout 10000 --exit"
   },
   "author": "",
   "license": "MIT",

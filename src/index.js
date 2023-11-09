@@ -17,7 +17,7 @@ async function getDB() {
     }
 }
 
-export let start = async () => {
+export const start = async () => {
     console.log('Connecting to DB...');
     const db = await getDB();
 
@@ -27,7 +27,7 @@ export let start = async () => {
         const tasks = invoices.map((invoice) =>
             new Promise((resolve, reject) => {
                 const  dueDate  =  Date.parse(invoice.due_date);
-                const today =   Date.parse("2023-11-18");  //Date.now();
+                const today =   Date.now();  // Date.parse("2023-11-18");
                 if (today >= dueDate) {
                     sendNotification(invoice)
                         .then(resolve)
@@ -40,7 +40,7 @@ export let start = async () => {
         await Promise.all(tasks);
     };
     console.log('Starting notification cycle...');
-    await runNotificationCycle()
+    //await runNotificationCycle() Uncomment to Test
 
-   //setInterval(runNotificationCycle, 86400000);
+   setInterval(runNotificationCycle, 86400000);
 };
