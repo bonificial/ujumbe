@@ -1,6 +1,6 @@
 import { describe, it, before, after } from 'mocha';
 import {assert} from "chai";
-/*
+
 import { expect } from 'chai';
 import { start } from '../src/index.js';
 import { MongoClient } from 'mongodb';
@@ -9,7 +9,7 @@ import { env } from '../src/constants.js';
 
 const { MONGO_DB_URL, MONGO_DB_NAME } = env;
 let client;
-*/
+
 
 describe('test test', function () {
     it('should return true ', function () {
@@ -20,7 +20,7 @@ describe('test test', function () {
 
 })
 
-/*
+
 describe('Database Connection', function () {
     before(async function() {
         this.timeout(10000);
@@ -102,7 +102,7 @@ describe('Notification Sending', function () {
         beforeEach(function () {
             // Mock the 'start' function
             start = async () => {
-                mockNotification({ /!* mock invoice data *!/ });
+                mockNotification({ });
             };
         });
 
@@ -117,4 +117,4 @@ describe('Notification Sending', function () {
 
     });
 });
-*/
+
