@@ -103,7 +103,7 @@ jobs:
         run: |
           # show the logs
            printenv | sort
-          kubectl wait --for=condition=available deployment/ujumbe --timeout=180s
+          kubectl wait --for=condition=available deployment/ujumbe --timeout=360s
           POD_NAME=$(kubectl get pods -l app=ujumbe -o jsonpath="{.items[0].metadata.name}")
           kubectl logs $POD_NAME
         env:
@@ -112,7 +112,7 @@ jobs:
         run: |
           # Wait for the service to be available (you may need to adjust the timeout)
           kubectl get svc ujumbe
-          kubectl wait --for=condition=available deployment/ujumbe --timeout=180s
+
 
           # Get the LoadBalancer or Service IP (if it's a LoadBalancer type)
           # SERVICE_IP=$(kubectl get svc ujumbe -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
