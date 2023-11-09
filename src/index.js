@@ -27,7 +27,7 @@ export const start = async () => {
         const tasks = invoices.map((invoice) =>
             new Promise((resolve, reject) => {
                 const  dueDate  =  Date.parse(invoice.due_date);
-                const today =   Date.now();  // Date.parse("2023-11-18");
+                const today =  Date.now(); //Date.parse("2023-11-18");  //Date.now();
                 if (today >= dueDate) {
                     sendNotification(invoice)
                         .then(resolve)
@@ -40,7 +40,7 @@ export const start = async () => {
         await Promise.all(tasks);
     };
     console.log('Starting notification cycle...');
-    //await runNotificationCycle() Uncomment to Test
+    await runNotificationCycle() //Enabled only for testing purposes
 
-   setInterval(runNotificationCycle, 86400000);
+  // setInterval(runNotificationCycle, 86400000);
 };

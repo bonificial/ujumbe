@@ -108,7 +108,7 @@ jobs:
           sudo mv kubectl /usr/local/bin/
           # Authenticate with EKS cluster
           aws eks --region ${{ env.AWS_REGION }} update-kubeconfig --name ujumbe-app
-          kubectl rollout restart deployment/ujumbe
+        
           # Apply Kubernetes manifests
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
@@ -119,7 +119,17 @@ jobs:
 
       - name: Display Pod Logs
         run: |
+          
           # show the logs
+          
+            if kubectl get deployment ujumbe &> /dev/null; then
+            kubectl rollout restart deployment/ujumbe
+          else
+            echo "Deployment 'ujumbe' does not exist."
+          fi
           kubectl wait --for=condition=available deployment/ujumbe --timeout=360s
           POD_NAME=$(kubectl get pods -l app=ujumbe -o jsonpath="{.items[0].metadata.name}")
+          kubectl get pods
           kubectl logs $POD_NAME
+        env:
+          KUBECONFIG: $HOME/.kube/config
