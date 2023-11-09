@@ -117,8 +117,6 @@ jobs:
           kubectl wait --for=condition=available deployment/ujumbe --timeout=360s
           POD_NAME=$(kubectl get pods -l app=ujumbe -o jsonpath="{.items[0].metadata.name}")
           kubectl logs $POD_NAME
-        env:
-
 
       - name: Test EKS Deployment
         run: |
