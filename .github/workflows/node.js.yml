@@ -80,14 +80,9 @@ jobs:
         run: |
           
           # Install and configure kubectl
-         
-        
           curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
-          
-      
-          
           # Authenticate with EKS cluster
           aws eks --region us-east-2 update-kubeconfig --name ujumbe-app
           
@@ -99,11 +94,10 @@ jobs:
         env:
           KUBECONFIG: $HOME/.kube/config
 
-
       - name: Display Pod Logs
         run: |
           # show the logs
-           printenv | sort
+          # printenv | sort
           kubectl wait --for=condition=available deployment/ujumbe --timeout=360s
           POD_NAME=$(kubectl get pods -l app=ujumbe -o jsonpath="{.items[0].metadata.name}")
           kubectl logs $POD_NAME
@@ -112,8 +106,6 @@ jobs:
         run: |
           # Wait for the service to be available (you may need to adjust the timeout)
           kubectl get svc ujumbe
-
-
           # Get the LoadBalancer or Service IP (if it's a LoadBalancer type)
           # SERVICE_IP=$(kubectl get svc ujumbe -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
            CLUSTER_IP=$(kubectl get svc ujumbe -o jsonpath='{.spec.clusterIP}')
