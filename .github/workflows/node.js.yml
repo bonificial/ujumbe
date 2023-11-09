@@ -9,7 +9,7 @@ on:
       - develop
   workflow_dispatch:
 jobs:
-  Build & Run Tests:
+  Build_and_Run_Tests:
     runs-on: ubuntu-latest
     env:
       NODE_VERSION: 16
@@ -52,7 +52,7 @@ jobs:
         # Running Unit Tests
         run: npm test
 
-  Containerize, Deploy, Run:
+  Containerize_Deploy_Run:
     runs-on: ubuntu-latest
     needs: build
     env:
