@@ -66,6 +66,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           # Replace these with your Docker image details
+          ls
           docker build -t ujumbe:latest .
           docker tag ujumbe:latest public.ecr.aws/j9c2n9s8/ujumbe:latest
           docker push public.ecr.aws/j9c2n9s8/ujumbe:latest
@@ -80,6 +81,8 @@ jobs:
           curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
+          
+      
           
           # Authenticate with EKS cluster
           aws eks --region us-east-2 update-kubeconfig --name ujumbe-app
