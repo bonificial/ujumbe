@@ -99,7 +99,7 @@ jobs:
           sudo mv kubectl /usr/local/bin/
           # Authenticate with EKS cluster
           aws eks --region us-east-2 update-kubeconfig --name ujumbe-app
-          
+          kubectl rollout restart deployment/ujumbe  
           # Apply Kubernetes manifests
           
           kubectl apply -f deployment.yaml
