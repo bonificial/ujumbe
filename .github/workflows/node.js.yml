@@ -54,7 +54,7 @@ jobs:
 
   Containerize_Deploy_Run:
     runs-on: ubuntu-latest
-    needs: build
+    needs: Build_and_Run_Tests
     env:
       KUBECONFIG: $HOME/.kube/config
     steps:
