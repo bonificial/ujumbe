@@ -1,5 +1,5 @@
 import { describe, it, before, after } from 'mocha';
-import {assert} from "chai";
+
 
 import { expect } from 'chai';
 import { start } from '../src/index.js';
@@ -9,16 +9,6 @@ import { env } from '../src/constants.js';
 
 const { MONGO_DB_URL, MONGO_DB_NAME } = env;
 let client;
-
-
-describe('test test', function () {
-    it('should return true ', function () {
-        let product = true;
-        assert.equal(product,true)
-    })
-
-
-})
 
 
 describe('Database Connection', function () {
