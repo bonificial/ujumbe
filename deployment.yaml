@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: ujumbe
-          image: public.ecr.aws/j9c2n9s8/ujumbe@sha256:f156f2c908e1e73c0087709538ab05aa7cbaeede717ea8624e4eafa8ec63aa40
+          image: public.ecr.aws/j9c2n9s8/ujumbe:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
