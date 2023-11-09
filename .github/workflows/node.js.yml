@@ -34,10 +34,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-
       - name: Build
         run: npm run build --if-present
-
 
       - name: Run tests
         run: npm test
@@ -75,6 +73,18 @@ jobs:
           DOCKER_CLI_AK: AKIA2U6SKQKMMCCAHDWF # ${{ secrets.AWS_ACCESS_KEY_ID }}
           DOCKER_CLI_SK: JBA6YCFGsVW3zBo4buUCRlg8W8vb2tT7cJxmbMYH # ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: us-east-2 # Change to your desired AWS region
+
+      - name: Generate ConfigMap
+        run: |
+          echo "apiVersion: v1" > configmap.yaml
+          echo "kind: ConfigMap" >> configmap.yaml
+          echo "metadata:" >> configmap.yaml
+          echo "  name: ujumbe-config" >> configmap.yaml
+          echo "data:" >> configmap.yaml
+          echo "  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}" >> configmap.yaml
+          echo "  ANOTHER_ENV_VAR: ${{ secrets.ANOTHER_ENV_VAR }}" >> configmap.yaml
+          # Add more environment variables as needed
+        shell: bash
 
       - name: Deploy to EKS
         run: |
