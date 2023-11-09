@@ -104,8 +104,8 @@ jobs:
           # Make a cURL request to test the server
           # If it's a LoadBalancer type, use the SERVICE_IP
           # If it's a NodePort type, use the NodePort (uncomment NODE_PORT)
-          curl -I http://$SERVICE_IP # If LoadBalancer type
-          #curl -I http://your-node-ip:$NODE_PORT # If NodePort type
+          # curl -I http://$SERVICE_IP # If LoadBalancer type
+          curl -I http://$SERVICE_IP:$NODE_PORT # If NodePort type
 
           # Check the response for HTTP status codes
         env:
