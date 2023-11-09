@@ -35,6 +35,15 @@ jobs:
       - name: Build
         run: npm run build --if-present
 
+      - name: Setup Environment Vars
+        run: |
+          export SLACK_WEBHOOK="${{ secrets.SLACK_WEBHOOK }}"
+          export MONGO_DB_URL="${{ secrets.MONGO_DB_URL }}"
+          export MONGO_DB_NAME="${{ secrets.MONGO_DB_NAME }}"
+          export TEST_BUSINESS_NAME="${{ secrets.TEST_BUSINESS_NAME }}"
+          export TEST_FROM_EMAIL="${{ secrets.TEST_FROM_EMAIL }}"
+          export TEST_TO_EMAIL="${{ secrets.TEST_TO_EMAIL }}"
+
       - name: Run tests
         run: npm test
 
