@@ -89,3 +89,24 @@ jobs:
           kubectl apply -f service.yaml
         env:
           KUBECONFIG: $HOME/.kube/config
+
+      - name: Test EKS Deployment
+        run: |
+          # Wait for the service to be available (you may need to adjust the timeout)
+          kubectl wait --for=condition=available deployment/ujumbe --timeout=180s
+
+          # Get the LoadBalancer or Service IP (if it's a LoadBalancer type)
+          SERVICE_IP=$(kubectl get svc ujumbe -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+
+          # Alternatively, get the NodePort (if it's a NodePort type)
+          # NODE_PORT=$(kubectl get svc ujumbe -o jsonpath='{.spec.ports[0].nodePort}')
+
+          # Make a cURL request to test the server
+          # If it's a LoadBalancer type, use the SERVICE_IP
+          # If it's a NodePort type, use the NodePort (uncomment NODE_PORT)
+          curl -I http://$SERVICE_IP # If LoadBalancer type
+          #curl -I http://your-node-ip:$NODE_PORT # If NodePort type
+
+          # Check the response for HTTP status codes
+        env:
+          KUBECONFIG: $HOME/.kube/config
