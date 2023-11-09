@@ -1,4 +1,5 @@
 import { describe, it, before, after } from 'mocha';
+/*
 import { expect } from 'chai';
 import { start } from '../src/index.js';
 import { MongoClient } from 'mongodb';
@@ -7,6 +8,7 @@ import { env } from '../src/constants.js';
 
 const { MONGO_DB_URL, MONGO_DB_NAME } = env;
 let client;
+*/
 
 describe('test test', function () {
     it('should return true ', function () {
