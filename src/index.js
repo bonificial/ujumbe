@@ -27,7 +27,7 @@ export const start = async () => {
         const tasks = invoices.map((invoice) =>
             new Promise((resolve, reject) => {
                 const  dueDate  =  Date.parse(invoice.due_date);
-                const today =   Date.parse("2023-11-18");  //Date.now();
+                const today =   Date.now();  // Date.parse("2023-11-18");
                 if (today >= dueDate) {
                     sendNotification(invoice)
                         .then(resolve)
