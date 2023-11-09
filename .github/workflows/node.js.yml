@@ -77,9 +77,10 @@ jobs:
 
       - name: Deploy to EKS
         run: |
-          printenv | sort
-          ls
+          
           # Install and configure kubectl
+         
+        
           curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
@@ -99,6 +100,8 @@ jobs:
 
       - name: Display Pod Logs
         run: |
+          # show the logs
+           printenv | sort
           kubectl wait --for=condition=available deployment/ujumbe --timeout=180s
           POD_NAME=$(kubectl get pods -l app=ujumbe -o jsonpath="{.items[0].metadata.name}")
           kubectl logs $POD_NAME
