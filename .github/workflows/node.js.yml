@@ -107,8 +107,6 @@ jobs:
 
         env:
           KUBECONFIG: $HOME/.kube/config
-          SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK}}
-          MONGO_DB_URL: ${{secrets.MONGO_DB_URL}}
 
       - name: Display Pod Logs
         run: |
