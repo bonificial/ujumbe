@@ -1,7 +1,7 @@
 name: Node.js CI
 
 env:
-  SLACK_WEBHOOK: ${{secrets.API_KEY}}
+  SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK}}
 
 on:
   push:
