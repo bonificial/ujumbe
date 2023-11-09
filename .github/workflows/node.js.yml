@@ -90,7 +90,8 @@ jobs:
           
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
-           # printenv | sort
+          # printenv | sort
+          export SLACK_WEBHOOK=${{secrets.SLACK_WEBHOOK}}
         env:
           KUBECONFIG: $HOME/.kube/config
 
