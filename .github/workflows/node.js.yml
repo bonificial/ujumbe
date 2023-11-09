@@ -13,6 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NODE_VERSION: 16
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}
+      MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME }}
+      TEST_BUSINESS_NAME: ${{ secrets.TEST_BUSINESS_NAME }}
+      TEST_FROM_EMAIL: ${{ secrets.TEST_FROM_EMAIL }}
+      TEST_TO_EMAIL: ${{ secrets.TEST_TO_EMAIL }}
 
     strategy:
       matrix:
