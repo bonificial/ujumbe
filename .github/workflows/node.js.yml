@@ -43,6 +43,7 @@ jobs:
           export TEST_BUSINESS_NAME="${{ secrets.TEST_BUSINESS_NAME }}"
           export TEST_FROM_EMAIL="${{ secrets.TEST_FROM_EMAIL }}"
           export TEST_TO_EMAIL="${{ secrets.TEST_TO_EMAIL }}"
+          printenv | sort
 
       - name: Run tests
         run: npm test
