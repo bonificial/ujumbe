@@ -118,7 +118,7 @@ jobs:
           POD_NAME=$(kubectl get pods -l app=ujumbe -o jsonpath="{.items[0].metadata.name}")
           kubectl logs $POD_NAME
         env:
-          SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK}}
+
 
       - name: Test EKS Deployment
         run: |
