@@ -40,7 +40,7 @@ export const start = async () => {
         await Promise.all(tasks);
     };
     console.log('Starting notification cycle...');
-    await runNotificationCycle()
+    //await runNotificationCycle() Uncomment to Test
 
-   //setInterval(runNotificationCycle, 86400000);
+   setInterval(runNotificationCycle, 86400000);
 };
