@@ -47,7 +47,7 @@ The invoice ${invoice_number} of Kshs. ${total_amount_due} is due on ${due_date}
 .</p></body></html>`
         })
     }).then((res) => {
-        console.log('Successful.Email Sent  to ', customer_email)
+        console.log('Successful.Email Sent  to ', customer_email,res)
     }).catch((err) => {
         console.log(
             'Error Occured', err
