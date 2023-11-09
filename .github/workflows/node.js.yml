@@ -67,21 +67,21 @@ jobs:
         with:
           aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.ECR_REGION }}
+          aws-region: ${{ secrets.ECR_REGION }}
 
       - name: Authenticate with AWS ECR
         run: |
-          aws ecr-public get-login-password --region ${{ env.ECR_REGION }} | docker login --username AWS --password-stdin ${{ env.ECR_ENDPOINT }}
+          aws ecr-public get-login-password --region ${{ secrets.ECR_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_ENDPOINT }}
         env:
-          your-region: ${{ env.ECR_REGION }}
+          your-region: ${{ secrets.ECR_REGION }}
           your-account-id: ${{ env.AWS_ACCOUNT_ID }}
 
       - name: Build and push Docker image
         run: |
           # Replace these with your Docker image details
           docker build -t ujumbe:latest .
-          docker tag ujumbe:latest ${{ env.ECR_ENDPOINT }}/ujumbe:latest
-          docker push ${{ env.ECR_ENDPOINT }}/ujumbe:latest
+          docker tag ujumbe:latest ${{ secrets.ECR_ENDPOINT }}/ujumbe:latest
+          docker push ${{ secrets.ECR_ENDPOINT }}/ujumbe:latest
         env:
           DOCKER_CLI_AK: ${{ env.AWS_ACCESS_KEY_ID }}
           DOCKER_CLI_SK: ${{ env.AWS_SECRET_ACCESS_KEY }}
