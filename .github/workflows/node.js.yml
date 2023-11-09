@@ -1,5 +1,8 @@
 name: Node.js CI
 
+env:
+  SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK}}
+
 on:
   push:
     branches:
@@ -8,14 +11,11 @@ on:
     branches:
       - develop
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     env:
       NODE_VERSION: 16
-      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }} # Set the environment variable here
 
     strategy:
       matrix:
@@ -44,7 +44,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       KUBECONFIG: $HOME/.kube/config
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -52,8 +51,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: AKIA2U6SKQKMMCCAHDWF # ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: JBA6YCFGsVW3zBo4buUCRlg8W8vb2tT7cJxmbMYH # ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2 # Change to your desired AWS region
 
       - name: Authenticate with AWS ECR
@@ -66,12 +65,13 @@ jobs:
       - name: Build and push Docker image
         run: |
           # Replace these with your Docker image details
+          
           docker build -t ujumbe:latest .
           docker tag ujumbe:latest public.ecr.aws/j9c2n9s8/ujumbe:latest
           docker push public.ecr.aws/j9c2n9s8/ujumbe:latest
         env:
-          DOCKER_CLI_AK: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          DOCKER_CLI_SK: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          DOCKER_CLI_AK: AKIA2U6SKQKMMCCAHDWF # ${{ secrets.AWS_ACCESS_KEY_ID }}
+          DOCKER_CLI_SK: JBA6YCFGsVW3zBo4buUCRlg8W8vb2tT7cJxmbMYH # ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: us-east-2 # Change to your desired AWS region
 
       - name: Generate ConfigMap
@@ -81,39 +81,43 @@ jobs:
           echo "metadata:" >> configmap.yaml
           echo "  name: ujumbe-config" >> configmap.yaml
           echo "data:" >> configmap.yaml
-
-          # Loop through all GitHub secrets and add them to the ConfigMap
-          for secret in $(printenv | grep -E '^SECRET_' | sed 's/SECRET_//'); do
-            echo "  $secret: ${{ secrets["SECRET_$secret"] }}" >> configmap.yaml
-          done
+          echo "  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}" >> configmap.yaml
+          echo "  ANOTHER_ENV_VAR: ${{ secrets.ANOTHER_ENV_VAR }}" >> configmap.yaml
           # Add more environment variables as needed
         shell: bash
 
       - name: Deploy to EKS
         run: |
+          
           # Install and configure kubectl
           curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
           # Authenticate with EKS cluster
           aws eks --region us-east-2 update-kubeconfig --name ujumbe-app
-
+          
           # Apply Kubernetes manifests
+          
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
           kubectl apply -f configmap.yaml
+          # printenv | sort
+
         env:
           KUBECONFIG: $HOME/.kube/config
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }} # Set the environment variable here
+          SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK}}
 
       - name: Display Pod Logs
         run: |
+          
           # show the logs
+          # printenv | sort
+           
           kubectl wait --for=condition=available deployment/ujumbe --timeout=360s
           POD_NAME=$(kubectl get pods -l app=ujumbe -o jsonpath="{.items[0].metadata.name}")
           kubectl logs $POD_NAME
         env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }} # Set the environment variable here
+          SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK}}
 
       - name: Test EKS Deployment
         run: |
@@ -121,15 +125,15 @@ jobs:
           kubectl get svc ujumbe
           # Get the LoadBalancer or Service IP (if it's a LoadBalancer type)
           # SERVICE_IP=$(kubectl get svc ujumbe -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
-          CLUSTER_IP=$(kubectl get svc ujumbe -o jsonpath='{.spec.clusterIP}')
+           CLUSTER_IP=$(kubectl get svc ujumbe -o jsonpath='{.spec.clusterIP}')
           # Alternatively, get the NodePort (if it's a NodePort type)
-          NODE_PORT=$(kubectl get svc ujumbe -o jsonpath='{.spec.ports[0].nodePort}')
+           NODE_PORT=$(kubectl get svc ujumbe -o jsonpath='{.spec.ports[0].nodePort}')
 
           # Make a cURL request to test the server
           # If it's a LoadBalancer type, use the SERVICE_IP
           # If it's a NodePort type, use the NodePort (uncomment NODE_PORT)
-          # curl -I http://$SERVICE_IP:$NODE_PORT # If LoadBalancer type
-          curl -I http://$CLUSTER_IP:$NODE_PORT --connect-timeout 20 # If NodePort type
+           # curl -I http://$SERVICE_IP:$NODE_PORT # If LoadBalancer type
+           curl -I http://$CLUSTER_IP:$NODE_PORT --connect-timeout 20 # If NodePort type
 
           # Check the response for HTTP status codes
         env:
