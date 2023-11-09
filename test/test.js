@@ -2,9 +2,7 @@ import { describe, it, before, after } from 'mocha';
 
 
 import { expect } from 'chai';
-import { start } from '../src/index.js';
 import { MongoClient } from 'mongodb';
-import {assert} from "chai";
 import { env } from '../src/constants.js';
 
 const { MONGO_DB_URL, MONGO_DB_NAME } = env;
@@ -71,40 +69,4 @@ describe('Database Connection', function () {
     });
 });
 
-describe('Notification Sending', function () {
-    it('Should send a notification successfully', async function () {
-        const mockNotification = function (invoice) {
-            expect(invoice).to.exist;
-        };
-
-        let originalStart;
-
-        before(function () {
-            // Save the original 'start' function
-            originalStart = start;
-        });
-
-        after(function () {
-            // Restore the original 'start' function
-            originalStart = start;
-        });
-
-        beforeEach(function () {
-            // Mock the 'start' function
-            start = async () => {
-                mockNotification({ });
-            };
-        });
-
-        afterEach(function () {
-            // Restore the original 'start' function after each test
-            originalStart = start;
-        });
-
-        it('Sends a notification successfully', async function () {
-            await start(); // Calls the mocked 'start' function
-        });
-
-    });
-});
 

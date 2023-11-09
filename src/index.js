@@ -17,7 +17,7 @@ async function getDB() {
     }
 }
 
-export let start = async () => {
+export const start = async () => {
     console.log('Connecting to DB...');
     const db = await getDB();
 
