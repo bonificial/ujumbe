@@ -95,8 +95,11 @@ jobs:
           kubectl apply -f service.yaml
         env:
           KUBECONFIG: $HOME/.kube/config
+
+
       - name: Display Pod Logs
         run: |
+          kubectl wait --for=condition=available deployment/ujumbe --timeout=180s
           POD_NAME=$(kubectl get pods -l app=ujumbe -o jsonpath="{.items[0].metadata.name}")
           kubectl logs $POD_NAME
         env:
