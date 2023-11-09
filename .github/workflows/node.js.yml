@@ -98,7 +98,7 @@ jobs:
 
           # Get the LoadBalancer or Service IP (if it's a LoadBalancer type)
           # SERVICE_IP=$(kubectl get svc ujumbe -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
-          # CLUSTER_IP=$(kubectl get svc ujumbe -o jsonpath='{.spec.clusterIP}')
+           CLUSTER_IP=$(kubectl get svc ujumbe -o jsonpath='{.spec.clusterIP}')
           # Alternatively, get the NodePort (if it's a NodePort type)
           # NODE_PORT=$(kubectl get svc ujumbe -o jsonpath='{.spec.ports[0].nodePort}')
 
