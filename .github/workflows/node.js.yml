@@ -89,7 +89,12 @@ jobs:
           kubectl apply -f service.yaml
         env:
           KUBECONFIG: $HOME/.kube/config
-
+      - name: Display Pod Logs
+        run: |
+          POD_NAME=$(kubectl get pods -l app=ujumbe -o jsonpath="{.items[0].metadata.name}")
+          kubectl logs $POD_NAME
+        env:
+          KUBECONFIG: $HOME/.kube/config
       - name: Test EKS Deployment
         run: |
           # Wait for the service to be available (you may need to adjust the timeout)

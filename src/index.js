@@ -23,7 +23,7 @@ export let start = async () => {
 
     const runNotificationCycle = async () => {
         const invoices = await db.collection('invoices').find({}).toArray();
-        console.log(invoices)
+
         const tasks = invoices.map((invoice) =>
             new Promise((resolve, reject) => {
                 const  dueDate  =  Date.parse(invoice.due_date);
