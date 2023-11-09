@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ujumbe
+  labels:
+    app: ujumbe
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ujumbe
+  template:
+    metadata:
+      labels:
+        app: ujumbe
+    spec:
+      containers:
+        - name: ujumbe
+          image: public.ecr.aws/j9c2n9s8/ujumbe:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: ujumbe-config

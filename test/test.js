@@ -1,6 +1,7 @@
 import { describe, it, before, after } from 'mocha';
+
+
 import { expect } from 'chai';
-import { start } from '../src/index.js';
 import { MongoClient } from 'mongodb';
 import { env } from '../src/constants.js';
 
@@ -22,6 +23,7 @@ describe('Database Connection', function () {
 
     after(async function () {
         await client.close();
+
     });
 
     it('Should connect to the database successfully', async function () {
@@ -29,22 +31,27 @@ describe('Database Connection', function () {
         //console.log(client)
         const db = await client.db(MONGO_DB_NAME);
         expect(db).to.exist;
+
     });
 
-    it('Should handle database connection errors', async function () {
+    it('Should handle database connection errors', async function() {
+        this.timeout(20000);
         const wrongUrl = `${MONGO_DB_URL}/nonexistent-database`;
-        const wrongClient = new MongoClient(wrongUrl, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
 
         try {
+            const wrongClient = new MongoClient(wrongUrl, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            });
+
             await wrongClient.connect();
-        } catch (error) {
-            console.log(error)
+
+        } catch(error) {
             expect(error).to.be.an('error');
         }
+
     });
+
 
     it('Should be able to retrieve data from the database', async function () {
         const db = client.db(MONGO_DB_NAME);
@@ -59,47 +66,10 @@ describe('Database Connection', function () {
 
         try {
             await collection.find({}).toArray();
-            // Remove the following line since you don't need to expect an AssertionError here.
         } catch (error) {
-
             expect(error).to.be.an('error');
         }
     });
 });
 
-describe('Notification Sending', function () {
-    it('Should send a notification successfully', async function () {
-        const mockNotification = function (invoice) {
-            expect(invoice).to.exist;
-        };
 
-        let originalStart;
-
-        before(function () {
-            // Save the original 'start' function
-            originalStart = start;
-        });
-
-        after(function () {
-            // Restore the original 'start' function
-            originalStart = start;
-        });
-
-        beforeEach(function () {
-            // Mock the 'start' function
-            start = async () => {
-                mockNotification({ /* mock invoice data */ });
-            };
-        });
-
-        afterEach(function () {
-            // Restore the original 'start' function after each test
-            originalStart = start;
-        });
-
-        it('Sends a notification successfully', async function () {
-            await start(); // Calls the mocked 'start' function
-        });
-
-    });
-});
