@@ -3,7 +3,7 @@ import {env} from "./constants.js";
 import fetch from 'node-fetch';
 const {SLACK_WEBHOOK, BREVO_API_KEY, TEST_BUSINESS_NAME, TEST_FROM_EMAIL, TEST_TO_EMAIL} = env
 const webhook = new IncomingWebhook(SLACK_WEBHOOK);
-
+console.log('SLACK_WEBHOOK',SLACK_WEBHOOK)
 export const sendNotification = async (invoice) => {
     console.log('Sending notification..')
     const {invoice_number, total_amount_due, due_date} = invoice;
