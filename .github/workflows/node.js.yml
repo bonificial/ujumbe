@@ -93,11 +93,12 @@ jobs:
           echo "  name: ujumbe-config" >> configmap.yaml
           echo "data:" >> configmap.yaml
           echo "  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}" >> configmap.yaml
+          echo "  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}" >> configmap.yaml
           echo "  MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}" >> configmap.yaml
           echo "  MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME }}" >> configmap.yaml
           echo "  TEST_BUSINESS_NAME: ${{ secrets.TEST_BUSINESS_NAME }}" >> configmap.yaml
           echo "  TEST_FROM_EMAIL: ${{ secrets.TEST_FROM_EMAIL }}" >> configmap.yaml
-          echo "  TEST_TO_EMAIL: ${{ secrets.TEST_TO_EMAIL }}" >> configmap.yaml
+          echo "  BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}" >> configmap.yaml
           # Add more environment variables as needed
 
       - name: Deploy to EKS
@@ -108,7 +109,7 @@ jobs:
           sudo mv kubectl /usr/local/bin/
           # Authenticate with EKS cluster
           aws eks --region ${{ env.AWS_REGION }} update-kubeconfig --name ujumbe-app
-          kubectl rollout restart deployment/ujumbe
+        
           # Apply Kubernetes manifests
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
@@ -119,7 +120,17 @@ jobs:
 
       - name: Display Pod Logs
         run: |
+          
           # show the logs
+          
+            if kubectl get deployment ujumbe &> /dev/null; then
+            kubectl rollout restart deployment/ujumbe
+          else
+            echo "Deployment 'ujumbe' does not exist."
+          fi
           kubectl wait --for=condition=available deployment/ujumbe --timeout=360s
           POD_NAME=$(kubectl get pods -l app=ujumbe -o jsonpath="{.items[0].metadata.name}")
+          kubectl get pods
           kubectl logs $POD_NAME
+        env:
+          KUBECONFIG: $HOME/.kube/config

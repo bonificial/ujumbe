@@ -5,13 +5,12 @@ Welcome to the code repository for our project. This README provides essential i
 
 ## Code Review Instructions
 
-1. Please review the codebase to ensure it meets the project requirements and coding standards.
 
-2. Examine the CI/CD pipeline defined in the GitHub Actions workflow. It triggers automatically on:
+1. Examine the CI/CD pipeline defined in the GitHub Actions workflow. It triggers automatically on:
     - A pull request into the `develop` branch.
  
 
-3. The pipeline consists of two main steps:
+2. The pipeline consists of two main steps:
     - **Build and Run Tests**: It builds the project, runs unit tests, and stores the Docker image in Amazon ECR.
     - **Containerize, Deploy, and Run**: This step containerizes the application, deploys it to Amazon EKS, and starts the application.
 
