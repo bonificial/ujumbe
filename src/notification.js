@@ -23,7 +23,7 @@ export const sendNotification = async (invoice) => {
 
 
 export const sendEmail = async (invoice) => {
-    console.log('Sending Email')
+    console.log('Sending Email', BREVO_API_KEY)
     const {invoice_number, total_amount_due, due_date} = invoice;
     const customer_name = invoice?.customer?.name || 'Valued Client'
     const customer_email = invoice?.customer?.email || TEST_TO_EMAIL
